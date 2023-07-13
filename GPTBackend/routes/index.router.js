@@ -30,8 +30,9 @@ router.post('/v1/status', statusController.createStatus);
 router.get('/v1/status', statusController.getStatus);
 router.post('/v1/speech2text', speechToTextController.getTextFromSpeech);
 router.get('/v1/prompt', openAIController.getPrompt);
-router.get('/v1/image', textToImageController.createImage);
 router.post('/v1/ocr', upload.single('file'), ocrController.getOCRContent);
+router.get('/v2/image', openAIController.getImage);
+router.get('/v1/resourceWithImage', openAIController.createPDF);
 // router.get('/v1/fetch', textToImageController.fetchImage);
 
 module.exports = router;

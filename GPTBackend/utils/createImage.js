@@ -1,6 +1,10 @@
-var request = require('request');
+const request = require('request');
+const util = require('util');
 
-module.exports.createImage = (req, res, next) => {
+const requestPromise = util.promisify(request);
+
+async function createImage(prompt) {
+    console.log(prompt)
   var options = {
     'method': 'POST',
     'url': 'https://stablediffusionapi.com/api/v3/text2img',
@@ -8,11 +12,11 @@ module.exports.createImage = (req, res, next) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "key": process.env.STABLE_DIFFUSION_API_KEY_2,
-      "prompt": req.query.prompt,
+      "key": process.env.STABLE_DIFFUSION_API_KEY_3,
+      "prompt": prompt,
       "negative_prompt": null,
-      "width": "512",
-      "height": "512",
+      "width": "256",
+      "height": "256",
       "samples": "1",
       "num_inference_steps": "20",
       "seed": null,
@@ -28,25 +32,28 @@ module.exports.createImage = (req, res, next) => {
     })
   };
   
-  request(options, function (error, response) {
-    if (error) throw new Error(error);
-    const responseBody = JSON.parse(response.body);
-    if(responseBody.status=="success"){
-      console.log('success')
-      res.send(response.body);
+  try {
+    const response = await fetch('https://stablediffusionapi.com/api/v3/text2img', options);
+    const responseBody = await response.json();
+
+    if (responseBody.status === "success") {
+      return {
+        success: true,
+        url: responseBody.output[0]
+      };
+    } else {
+        console.log(responseBody)
+        return {
+            success: false,
+            url: ''
+          };
     }
-    else {
-      console.log(response.body)
-      setTimeout(() => {
-        let imageObj = fetchImage(responseBody.id);
-        res.send(imageObj);
-      }, responseBody['eta'] * 1000 + 1000);
-      console.log(responseBody['eta'] * 1000 + 1000);
-    }
-  });
+  } catch (error) {
+    throw new Error(error);
+  }
 }
 
-function fetchImage(id){
+async function fetchImage(id){
   var options = {
     'method': 'POST',
     'url': 'https://stablediffusionapi.com/api/v4/dreambooth/fetch',
@@ -54,7 +61,7 @@ function fetchImage(id){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "key": process.env.STABLE_DIFFUSION_API_KEY_2,
+      "key": process.env.STABLE_DIFFUSION_API_KEY_3,
       "request_id": id
     })
   };
@@ -65,3 +72,7 @@ function fetchImage(id){
     return response.body;
   });
 }
+
+module.exports = {
+    createImage
+};
