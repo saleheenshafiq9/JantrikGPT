@@ -61,6 +61,8 @@ export default function OmniGPT(props: IOmniGPTProps) {
         responseType={responseType}
         respose={response}
         output={output}
+        setResponse={setResponse}
+        setResponseType={setResponseType}
         setOutput={setOutput}
       />
     </div>

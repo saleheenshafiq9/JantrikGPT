@@ -6,6 +6,8 @@ export interface IResponseProps {
   respose: string | null
   output: "text" | "speech"
   setOutput: React.Dispatch<React.SetStateAction<"text" | "speech">>
+  setResponse: React.Dispatch<React.SetStateAction<string | null>>
+  setResponseType: React.Dispatch<React.SetStateAction<"text" | "speech" | null>>
 }
 
 export default function Response(props: IResponseProps) {
@@ -38,6 +40,15 @@ export default function Response(props: IResponseProps) {
       ) : (
         <audio controls autoPlay src={respose ?? ""} />
       )}
+      <button
+        className="btn btn-error"
+        onClick={() => {
+          props.setResponse(null)
+          props.setResponseType(null)
+        }}
+      >
+        Clear
+      </button>
     </div>
   )
 }
