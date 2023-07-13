@@ -6,7 +6,7 @@ const statusController = require('../controllers/status.controller');
 
 
 
-router.post('/status', statusController.createStatus);
-router.get('/status', statusController.getStatus);
+router.post('/v1/status', statusController.createStatus);
+router.get('/v1/status', statusController.getStatus);
 
 module.exports = router;
