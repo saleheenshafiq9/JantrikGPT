@@ -9,6 +9,7 @@ export interface IOmniGPTProps {}
 
 export default function OmniGPT(props: IOmniGPTProps) {
   const [textInput, setTextInput] = React.useState("")
+  const [audioBlob, setAudioBlob] = React.useState<Blob | null>(null)
 
   const [output, setOutput] = React.useState<"text" | "speech">("text")
 
@@ -26,11 +27,14 @@ export default function OmniGPT(props: IOmniGPTProps) {
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": textInput === "" ? "audio/webm" : "application/json",
         },
-        body: JSON.stringify({
-          payload: textInput,
-        }),
+        body:
+          textInput === ""
+            ? audioBlob
+            : JSON.stringify({
+                payload: textInput,
+              }),
       })
 
       if (output === "text") {
@@ -55,7 +59,11 @@ export default function OmniGPT(props: IOmniGPTProps) {
     <div className="flex flex-col">
       <div className="flex justify-center w-[95vw] lg:w-[60vw]">
         <TextInput setTextInput={setTextInput} />
-        <SendButton input={textInput === "" ? "speech" : "text"} setIsFetching={setIsFetching} />
+        <SendButton
+          setAudioBlob={setAudioBlob}
+          input={textInput === "" ? "speech" : "text"}
+          setIsFetching={setIsFetching}
+        />
       </div>
       <Response
         responseType={responseType}
