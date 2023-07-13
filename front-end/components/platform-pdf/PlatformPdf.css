@@ -1,0 +1,58 @@
+.pdf-viewer {
+    width: 100%;
+    height: 500px;
+  }
+
+  .hero-custom {
+    width: 800px;
+    height: 300px;
+  }
+
+  .btn-cust2 {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+    color: #0d545b;
+  }
+
+  .modal-custom {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+  }
+
+  .input-custom {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+    color: #1B1E28;
+}
+
+.hero-cust {
+  color: #1B1E28;
+}
+
+.file-custom {
+  color: #1B1E28;
+  background: rgb(216,228,255);
+  background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.btn-custom {
+  background: rgb(216,228,255);
+  background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+  height: 100px;
+  padding-bottom: 16px;
+  border: 1px solid #31E981;
+}
+
+.btn-cust1 {
+  margin-top: 100px;
+  border: 1px solid #31E981;
+}
+
+.hero-post {
+  background: rgb(216,228,255);
+  background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.text-custom {
+  color: #0d545b;
+}

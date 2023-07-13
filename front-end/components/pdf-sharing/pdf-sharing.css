@@ -1,0 +1,30 @@
+.input {
+    width: 500px;
+    height: 100px;
+}
+
+.input-custom {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+    color: #1B1E28;
+}
+
+.file-custom {
+    color: #1B1E28;
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+}
+
+.btn-custom {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+    height: 100px;
+    padding-bottom: 16px;
+}
+
+.btn-cust1 {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%);
+    color: #0d545b;
+    margin-top: 100px;
+}
