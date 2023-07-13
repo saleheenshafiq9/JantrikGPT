@@ -1,10 +1,9 @@
-// import { Configuration, OpenAIApi } from "openai";
-// const configuration = new Configuration({
-//     organization: "org-oS3BhHZAG6BTnf7awb2a8SaV",
-//     apiKey: process.env.OPENAI_API_KEY,
-// });
-// const openai = new OpenAIApi(configuration);
-// const response = await openai.listEngines();
+const { Configuration, OpenAIApi } = require("openai");
+const configuration = new Configuration({
+    organization: "org-oS3BhHZAG6BTnf7awb2a8SaV",
+    apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 const axios = require('axios');
 
