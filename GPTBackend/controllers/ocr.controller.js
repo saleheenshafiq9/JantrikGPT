@@ -2,6 +2,8 @@
 
 const request = require("request");
 const fs = require('fs');
+const { getPrompt } = require('../utils/gpt');
+const openAIController = require('../controllers/openai.controller');
 
 let key = process.env.OCR_KEY;
 let endpoint = process.env.OCR_ENDPOINT;
@@ -45,6 +47,14 @@ module.exports.getOCRContent = async (req, res, next) => {
         });
       });
     });
-    res.send(prompt)
+    console.log(prompt)
+    getPrompt(prompt).then(promptResponse => {
+      // Send the prompt response to the user
+      res.send(promptResponse);
+    })
+    .catch(error => {
+      console.error('Error getting prompt:', error);
+      res.sendStatus(500); // Send an appropriate error response
+    });
   });
 };
