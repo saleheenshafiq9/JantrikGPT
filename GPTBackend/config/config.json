@@ -6,7 +6,9 @@
         "JWT_EXP": "600m",
         "AZURE_COGNITIVE_SPEECH_KEY": "44c7f8fff83a4d7990e86d29972b47b7",
         "REGION": "eastus",
-        "OPENAI_API_KEY": "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"
+        "OPENAI_API_KEY": "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",
+        "OCR_KEY": "2ee0d7d6435d46d9b82cbca8ba6ea2be",
+        "OCR_ENDPOINT": "https://ocr-hackathon-jantrik.cognitiveservices.azure.com/"
     },
     "production": {
         "PORT": 80,
@@ -15,6 +17,8 @@
         "JWT_EXP": "3600m",
         "AZURE_COGNITIVE_SPEECH_KEY": "44c7f8fff83a4d7990e86d29972b47b7",
         "REGION": "eastus",
-        "OPENAI_API_KEY": "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"
+        "OPENAI_API_KEY": "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",
+        "OCR_KEY": "2ee0d7d6435d46d9b82cbca8ba6ea2be",
+        "OCR_ENDPOINT": "https://ocr-hackathon-jantrik.cognitiveservices.azure.com/"
     }
 }
