@@ -1,5 +1,7 @@
 const axios = require('axios')
+
 async function getPrompt(prompt) {
+    console.log(prompt)
     try {
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: 'gpt-3.5-turbo',
@@ -14,7 +16,7 @@ async function getPrompt(prompt) {
   
       return response.data.choices[0].message.content;
     } catch (error) {
-      console.error('Error sending chat request:', error);
+    //   console.error('Error sending chat request:', error);
       throw error;
     }
   }
