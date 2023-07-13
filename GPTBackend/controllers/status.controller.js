@@ -4,8 +4,6 @@ const Status = mongoose.model('Status');
 
 var axios = require('axios');
 
-const authUrl = "http://account-service:3000/api/auth/verifyJWT";
-
 async function verifyToken(request) {
     //console.log(request.headers['authorization'].split(' ')[1])
     let response;
@@ -20,6 +18,7 @@ async function verifyToken(request) {
    // console.log(response);
     return response;
   }
+  
 
 module.exports.createStatus = async (req, res) => {
     var authRes = await verifyToken({token: req.headers['authorization'].split(' ')[1]});
