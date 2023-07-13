@@ -30,17 +30,14 @@ module.exports.createImage = (req, res, next) => {
   
   request(options, function (error, response) {
     if (error) throw new Error(error);
-    console.log(typeof response.body)
     const responseBody = JSON.parse(response.body);
-    if(responseBody.status!="processing"){
+    if(responseBody.status=="success"){
       res.send(response.body);
     }
     else {
       console.log(response.body)
       setTimeout(() => {
         let imageObj = fetchImage(responseBody.id);
-
-        console.log('imgobj: ',imageObj)
         res.send(imageObj);
       }, responseBody['eta'] * 1000 + 1000);
       console.log(responseBody['eta'] * 1000 + 1000);
@@ -63,6 +60,7 @@ function fetchImage(id){
   
   request(options, function (error, response) {
     if (error) throw new Error(error);
+    console.log(response.body)
     return response.body;
   });
 }

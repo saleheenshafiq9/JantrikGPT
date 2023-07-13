@@ -30,14 +30,21 @@ module.exports.getOCRContent = async (req, res, next) => {
       "Ocp-Apim-Subscription-Key": key,
     },
   };
+  let prompt = '';
 
   request.post(options, (error, response, body) => {
     if (error) {
       console.log("Error: ", error);
       return;
     }
-    let jsonResponse = JSON.stringify(JSON.parse(body), null, "  ");
-    console.log("JSON Response\n");
-    console.log(jsonResponse);
+    let jsonResponse = JSON.parse(body);
+    jsonResponse.regions.forEach(region => {
+      region.lines.forEach(line => {
+        line.words.forEach(word => {
+          prompt += word.text + " ";
+        });
+      });
+    });
+    res.send(prompt)
   });
 };
