@@ -1,7 +1,7 @@
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
-      API: string
+      API_SERVER: string
     }
   }
 }

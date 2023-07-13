@@ -9,8 +9,14 @@ module.exports.omnigpt = async (req, res, next) => {
   if (input === "text") {
     const { payload } = req.body
 
-    if (output === "audio") {
-      const audioStream = await textToSpeech(key, region, payload, null) // filename is null
+    if (payload === undefined) {
+      res.send(400)
+    }
+
+    if (output === "speech") {
+      const gptResponse = await textToText(payload)
+      const audioStream = await textToSpeech(key, region, gptResponse, null) // filename is null
+
       res.set({
         "Content-Type": "audio/mpeg",
         "Transfer-Encoding": "chunked",
