@@ -9,7 +9,7 @@ export interface IOmniGPTProps {}
 
 export default function OmniGPT(props: IOmniGPTProps) {
   const [textInput, setTextInput] = React.useState("")
-  const [audioBlob, setAudioBlob] = React.useState<Blob | null>(null)
+  // const [audioBlob, setAudioBlob] = React.useState<Blob | null>(null)
 
   const [output, setOutput] = React.useState<"text" | "speech">("text")
 
@@ -27,14 +27,11 @@ export default function OmniGPT(props: IOmniGPTProps) {
       const res = await fetch(url, {
         method: "POST",
         headers: {
-          "Content-Type": textInput === "" ? "audio/webm" : "application/json",
+          "Content-Type": "application/json",
         },
-        body:
-          textInput === ""
-            ? audioBlob
-            : JSON.stringify({
-                payload: textInput,
-              }),
+        body: JSON.stringify({
+          payload: textInput,
+        }),
       })
 
       if (output === "text") {
@@ -48,6 +45,7 @@ export default function OmniGPT(props: IOmniGPTProps) {
       }
 
       setIsFetching(false)
+      setTextInput("")
     }
 
     if (isFetching) {
@@ -60,7 +58,7 @@ export default function OmniGPT(props: IOmniGPTProps) {
       <div className="flex justify-center w-[95vw] lg:w-[60vw]">
         <TextInput setTextInput={setTextInput} />
         <SendButton
-          setAudioBlob={setAudioBlob}
+          setTextInput={setTextInput}
           input={textInput === "" ? "speech" : "text"}
           setIsFetching={setIsFetching}
         />

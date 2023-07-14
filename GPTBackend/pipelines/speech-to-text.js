@@ -3,16 +3,16 @@ const sdk = require("microsoft-cognitiveservices-speech-sdk")
 function speechToText(req, key, region) {
   let pushStream = sdk.AudioInputStream.createPushStream()
 
-  //   req
-  //     .on("data", function (arrayBuffer) {
-  //       pushStream.write(arrayBuffer.slice())
-  //     })
-  //     .on("end", function () {
-  //       pushStream.close()
-  //     })
+  req
+    .on("data", function (arrayBuffer) {
+      pushStream.write(arrayBuffer.slice())
+    })
+    .on("end", function () {
+      pushStream.close()
+    })
 
-  pushStream.write(req.body)
-  pushStream.close()
+  //   pushStream.write(req.body)
+  //   pushStream.close()
 
   // Set up the speech configuration
   const speechConfig = sdk.SpeechConfig.fromSubscription(key, region)
@@ -21,6 +21,9 @@ function speechToText(req, key, region) {
   let speechRecognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig)
   speechRecognizer.recognizeOnceAsync(result => {
     console.log(`RECOGNIZED: Text=${result.text}`)
+
+    // console.log(`RECOGNIZED:AZURE  Reason=${sdk.ResultReason[result.reason]}`)
+    console.log(`RECOGNIZED:AZURE  ErrorDetails=${result.errorDetails}`)
 
     speechRecognizer.close()
     speechRecognizer.close()

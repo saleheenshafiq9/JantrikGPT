@@ -1,6 +1,5 @@
 const { textToSpeech } = require("../pipelines/text-to-speech")
 const { textToText } = require("../pipelines/text-to-text")
-const { speechToText } = require("../pipelines/speech-to-text")
 
 module.exports.omnigpt = async (req, res, next) => {
   const key = process.env.AZURE_COGNITIVE_SPEECH_KEY
@@ -13,25 +12,8 @@ module.exports.omnigpt = async (req, res, next) => {
     if (payload === undefined) {
       res.send(400)
     }
+
     const gptResponse = await textToText(payload)
-
-    if (output === "speech") {
-      const audioStream = await textToSpeech(key, region, gptResponse, null) // filename is null
-
-      res.set({
-        "Content-Type": "audio/mpeg",
-        "Transfer-Encoding": "chunked",
-      })
-      audioStream.pipe(res)
-    } else {
-      res.send(gptResponse)
-    }
-  } else {
-    console.log("ENTER SPEECH PIPELINE")
-
-    const userText =
-      speechToText(req, key, region) ?? "Repeat: The speech you provided could not be recognized"
-    const gptResponse = await textToText(userText)
 
     if (output === "speech") {
       const audioStream = await textToSpeech(key, region, gptResponse, null) // filename is null

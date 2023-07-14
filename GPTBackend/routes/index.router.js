@@ -1,6 +1,5 @@
 const express = require("express")
 const router = express.Router()
-const multer = require("multer")
 
 const statusController = require("../controllers/status.controller")
 const speechToTextController = require("../controllers/omnigpt.controller")

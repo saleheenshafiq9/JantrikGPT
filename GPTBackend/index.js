@@ -13,7 +13,6 @@ const server = require("http").createServer(app)
 
 //middleware
 app.use(bodyParser.json())
-app.use(bodyParser.raw())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 app.use("/api", routeIndex)

@@ -5,10 +5,11 @@ import Button from "../ui/button"
 import { AiOutlineSend } from "react-icons/ai"
 import { BsFillMicFill } from "react-icons/bs"
 import { AudioRecorder, useAudioRecorder } from "react-audio-voice-recorder"
+import getTextFromAssemblyAI from "@/lib/assembly"
 
 export interface ISendButtonProps {
   setIsFetching: React.Dispatch<React.SetStateAction<boolean>>
-  setAudioBlob: React.Dispatch<React.SetStateAction<Blob | null>>
+  setTextInput: React.Dispatch<React.SetStateAction<string>>
   input: "text" | "speech"
 }
 
@@ -33,9 +34,10 @@ export default function SendButton(props: ISendButtonProps) {
 
     const submissionButton = document.createElement("button")
     submissionButton.innerText = "Submit"
-    submissionButton.onclick = () => {
-      props.setAudioBlob(blob)
+    submissionButton.onclick = async () => {
+      props.setTextInput(await getTextFromAssemblyAI(blob))
       props.setIsFetching(true)
+
       dialogRef.current?.close()
     }
     innerDivRef.current?.appendChild(submissionButton)
@@ -48,7 +50,7 @@ export default function SendButton(props: ISendButtonProps) {
           if (props.input === "speech") {
             dialogRef.current?.showModal()
           }
-          // props.setIsFetching(true)
+          props.setIsFetching(true)
         }}
       >
         {props.input === "text" ? <AiOutlineSend /> : <BsFillMicFill />}
