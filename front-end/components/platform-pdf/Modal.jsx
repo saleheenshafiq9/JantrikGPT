@@ -24,7 +24,7 @@ const Modal = () => {
   
       // Reset the file input value to allow selecting the same file again
       event.target.value = '';
-      window.my_modal_4.showModal();
+      modalRef.current?.showModal()
     };
   
     const handleGenerateResults = () => {

@@ -10,8 +10,11 @@ export default function Home() {
     <div className="flex flex-col items-center w-full">
       <NavBar />
       <div className="my-5" />
+<<<<<<< Updated upstream
       <OmniGPT />
       <PdfShare />
+=======
+>>>>>>> Stashed changes
       <PlatformPdf />
       <StatusView />
     </div>
