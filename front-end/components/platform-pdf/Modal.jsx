@@ -12,6 +12,15 @@ const Modal = () => {
     const [textValue, setTextValue] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
   
+    useEffect(() => {
+      // Fetch book data from the API
+      fetch('http://localhost:3001/api/v1/pdf')
+        .then(response => response.json())
+        .then(data => setBookData(data))
+        .catch(error => console.log(error));
+        console.log(bookData)
+    }, []);
+    
     const handleButtonClick = () => {
       fileInputRef.current.click();
     };
