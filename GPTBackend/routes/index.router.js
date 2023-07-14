@@ -1,15 +1,5 @@
 const express = require("express")
 const router = express.Router()
-
-const statusController = require("../controllers/status.controller")
-const speechToTextController = require("../controllers/omnigpt.controller")
-
-router.post("/v1/status", statusController.createStatus)
-router.get("/v1/status", statusController.getStatus)
-router.post("/v1/omnigpt", speechToTextController.omnigpt)
-
-module.exports = router
-const express = require("express")
 const multer = require("multer")
 const jwtHelper = require("../config/jwtHelper")
 
@@ -37,6 +27,7 @@ const openAIController = require("../controllers/openai.controller")
 const ocrController = require("../controllers/ocr.controller")
 const textToImageController = require("../controllers/textToImage.controller")
 const userController = require("../controllers/user.controller")
+const omnigpt = require("../controllers/omnigpt.controller")
 
 router.post("/v1/pdf", upload.single("file"), pdfController.createPost)
 router.get("/v1/pdf", pdfController.getPost)
@@ -48,6 +39,9 @@ router.get("/v1/resourceWithImage", openAIController.createPDF)
 
 router.post("/v1/auth/register", userController.register)
 router.post("/v1/auth/authenticate", userController.authenticate)
+
+router.post("/v1/omnigpt", omnigpt.omnigpt)
+
 // router.get('/v1/fetch', textToImageController.fetchImage);
 
 module.exports = router
