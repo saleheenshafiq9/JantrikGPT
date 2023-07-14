@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        hind: ['Hind Siliguri', "sans-serif"],
+      },
       colors: {
         pm: {
           yellow: "#FFFAC2",
@@ -23,6 +26,9 @@ module.exports = {
           "dark-1": "#303340",
           "dark-2": "#1B1E28",
           light: "#E4F0FB",
+          lightgreen: "#31E981",
+          bgwhite: "#D8E4FF",
+          white: "#FFFFFF"
         },
       },
       backgroundImage: {

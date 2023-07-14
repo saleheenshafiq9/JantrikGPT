@@ -9,4 +9,4 @@ mongoose.connect(process.env.MONGODB_URI, (err) =>{
     }
 });
 
-require('./status.model');
+require('./pdf.model');

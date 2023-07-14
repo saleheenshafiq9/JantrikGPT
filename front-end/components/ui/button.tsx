@@ -18,7 +18,7 @@ export default function Button(props: IButtonProps) {
       className="rounded-xl p-4 text-2xl text-black max-h-min bg-pm-gray-2"
       whileHover={{
         boxShadow: "4px 4px 0px 2px #000000",
-        backgroundColor: "#767C9D",
+        backgroundColor: "#7390AA",
       }}
     >
       {children}
