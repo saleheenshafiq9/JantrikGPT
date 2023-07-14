@@ -41,9 +41,9 @@ module.exports.createPDF = async (req, res, next) => {
   if(req.query.prompt.includes('book')){
     prompt += ` with appropriate sectioning, in essay format, dont put hyphen before any line, format: title: title of book
     section 1: example section
-    section content 
+    example section details...
     section 2: example section
-    section content
+    example section 2 details..
     `;
   }
   try {

@@ -12,7 +12,7 @@ async function createImage(prompt) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "key": process.env.STABLE_DIFFUSION_API_KEY_3,
+      "key": process.env.STABLE_DIFFUSION_API_KEY_1,
       "prompt": prompt,
       "negative_prompt": null,
       "width": "256",

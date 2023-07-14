@@ -1,0 +1,9 @@
+.custom-bg {
+    background: rgb(216,228,255);
+    background: linear-gradient(80deg, rgba(216,228,255,1) 0%, rgba(255,255,255,1) 100%); /* Replace with your custom color value */
+  }
+
+.select-custom:active {
+    background-color: #D8E4FF;
+    color: black;
+}
