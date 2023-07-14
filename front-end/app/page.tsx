@@ -14,6 +14,7 @@ export default function Home() {
       <div className="my-5" />
       <Login />
       <Register />
+      <PlatformPdf />
       <StatusView />
     </div>
   )
