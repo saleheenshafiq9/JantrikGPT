@@ -1,14 +1,47 @@
-const express = require('express');
-const router = express.Router();
-const multer = require('multer');
+const express = require("express")
+const router = express.Router()
+const multer = require("multer")
+const jwtHelper = require("../config/jwtHelper")
 
-const statusController = require('../controllers/status.controller');
-const speechToTextController = require('../controllers/text-speech.controller')
-const gptController = require('../controllers/gpt.controller')
+const DIR = "./uploads/"
 
-router.post('/v1/status', statusController.createStatus);
-router.get('/v1/status', statusController.getStatus);
-router.post('/v1/speech2text', speechToTextController.getTextFromSpeech);
-router.get('/v1/prompt', gptController.getPrompt )
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR)
+  },
+  filename: (req, file, cb) => {
+    const fileName = Date.now().toString() + file.originalname.toLowerCase().split(" ").join("-")
+    cb(null, fileName)
+  },
+})
 
-module.exports = router;
+const upload = multer({
+  storage: storage,
+})
+
+router.use(express.static(__dirname + "./uploads/"))
+
+const pdfController = require("../controllers/pdf.controller")
+const speechToTextController = require("../controllers/text-speech.controller")
+const openAIController = require("../controllers/openai.controller")
+const ocrController = require("../controllers/ocr.controller")
+const textToImageController = require("../controllers/textToImage.controller")
+const userController = require("../controllers/user.controller")
+const omnigpt = require("../controllers/omnigpt.controller")
+
+router.post("/v1/pdf", upload.single("file"), pdfController.createPost)
+router.get("/v1/pdf", pdfController.getPost)
+router.post("/v1/speech2text", speechToTextController.getTextFromSpeech)
+router.get("/v1/prompt", openAIController.getPrompt)
+router.post("/v1/ocr", upload.single("file"), ocrController.getOCRContent)
+router.get("/v2/image", openAIController.getImage)
+router.get("/v1/resourceWithImage", openAIController.createPDF)
+
+router.post("/v1/auth/register", userController.register)
+router.post("/v1/auth/authenticate", userController.authenticate)
+
+router.post("/v1/omnigpt", omnigpt.omnigpt)
+
+// router.get('/v1/fetch', textToImageController.fetchImage);
+
+module.exports = router
