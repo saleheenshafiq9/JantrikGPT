@@ -1,7 +1,7 @@
 # JantrikGPT
 # AI Chatbot with Voice, Text, File, and Image Support
 
-This project is an AI chatbot developed to provide prompt responses to user commands using voice input and text inputs. It also supports file and image commands and generates generative images. The chatbot utilizes Optical Character Recognition (OCR) to extract text from images and responds based on the recognized commands. The system is designed to be modular, allowing for easy integration of additional features such as generating travel blogs with images. 
+Introducing our advanced AI chatbot – your virtual assistant for prompt and intelligent responses. Interact through voice, text, files, and images effortlessly. With OCR capabilities, it understands text from images and responds based on the recognized commands. Experience stunning generative images and create personalized PDFs, including captivating children's books. Our modular system allows for easy integration of additional features such as generating travel blogs with images, and Cloudinary integration ensures convenient PDF storage. Join our vibrant community and explore system-generated PDFs. Get ready to revolutionize the way you communicate and create with our innovative AI chatbot!
 
 ## Technologies Used
 - Frontend: Next.js
@@ -14,7 +14,7 @@ This project is an AI chatbot developed to provide prompt responses to user comm
 - Text to Voice: Azure Cognitive Service
 - ChatGPT: OpenAI
 - Optical Character Recognition: Azure Vision Studio
-- Text to Image Generation: Stable Diffusion AI
+- Text to Image Generation: Stable Diffusion API
 
 ## Features
 - Voice and text-based interaction: Users can communicate with the chatbot using either voice or text commands.
@@ -22,6 +22,7 @@ This project is an AI chatbot developed to provide prompt responses to user comm
 - Optical Character Recognition: The system employs OCR to extract text from images and responds accordingly.
 - Generative image generation: The chatbot utilizes Stable Diffusion AI to generate unique and creative images based on user commands.
 - PDF generation: Users can request and download PDFs, including children's book PDFs, created by the system.
+- PDF sharing platform: Users can share the PDFs that have been created by the chatbot. This platform provides essential features such as browsing, searching, viewing and downloading PDF books. Own file storage was used for this purpose.
 - Modular design: The system is designed with modularity in mind, enabling easy integration of additional features and functionalities.
 
 ## Additional Components
@@ -30,9 +31,14 @@ This project is an AI chatbot developed to provide prompt responses to user comm
 
 ## Installation and Setup
 1. Clone the repository.
-2. Install the necessary dependencies using `npm install`.
-3. Configure the environment variables for the APIs and services used.
-4. Run the application using `npm start`.
+2. browse to the server code `cd GPTBackend`
+3. Install the necessary dependencies using `npm install`
+4. Configure the environment variables for the APIs and services used.
+5. Run the application using `npm start`
+6. Open another terminal and navigate back to root folder `cd ..`
+7. browse to the client code `cd JantrikFrontend`
+8. Install the necessary dependencies using `npm install`.
+9. run the app with `pnpm run dev`
 
 ## Contributions
 Contributions to this project are welcome. If you have any ideas, suggestions, or improvements, feel free to open an issue or submit a pull request.
